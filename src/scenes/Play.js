@@ -86,7 +86,7 @@ class Play extends Phaser.Scene {
             this.gameOver = false;
             // 60-second play clock
             scoreConfig.fixedWidth = 0;
-            this.clock = this.time.delayedCall(10000, () => {
+            this.clock = this.time.delayedCall(5000, () => {
                   this.add.text(game.config.width/2, game.config.height/2,
                    'GAME OVER', scoreConfig).setOrigin(0.5);
                   this.add.text(game.config.width/2, game.config.height/2 + 64,
@@ -98,6 +98,11 @@ class Play extends Phaser.Scene {
       }
 
       update() {
+            // check key input for restart
+            if(this.gameOver && Phaser.Input.Keyboard.JustDown(keyRestart)) {
+                  this.scene.restart();
+            }
+            
             this.starfield.tilePositionX -= 4;
 
             // Game objects are not updated automatically
