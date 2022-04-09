@@ -6,3 +6,7 @@ let config = { //This is a JS object - similar to a dictionary
 }
 
 let game = new Phaser.Game(config);
+
+// Set UI sizes
+let borderUISize = game.config.height / 15;
+let borderPadding = borderUISize / 3;
