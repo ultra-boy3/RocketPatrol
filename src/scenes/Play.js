@@ -32,9 +32,20 @@ class Play extends Phaser.Scene {
             // Each has parameters: Position, Size, Color
             //setOrigin adjusts the object's origin/pivot
 
-            //add rocket (p1) to horizontal of screen
+            //add rocket (p1) to horizontal middle of screen
             this.p1Rocket = new Rocket(this, game.config.width/2, game.config.height - borderUISize - borderPadding,
             'rocket').setOrigin(0.5, 0);
+
+            //add spaceships (x3)
+            // Spaces the ships apart on x axis by borderUISize (width of the border)
+            // Each ship has diff point value passed into constrcutor's point argument
+            // They're also outside the viewport
+            this.ship01 = new Spaceship(this, game.config.width + borderUISize*6,
+                  borderUISize*4, 'spaceship', 0, 30).setOrigin(0, 0);
+            this.ship02 = new Spaceship(this, game.config.width + borderUISize*3,
+                  borderUISize*5 + borderPadding*2, 'spaceship', 0, 20).setOrigin(0, 0);
+            this.ship03 = new Spaceship(this, game.config.width,
+                  borderUISize*6 + borderPadding*4, 'spaceship', 0, 10).setOrigin(0, 0);
 
             //define keys
             keyFire = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
@@ -50,6 +61,9 @@ class Play extends Phaser.Scene {
 
             // Game objects are not updated automatically
             this.p1Rocket.update();
+            this.ship01.update();
+            this.ship02.update();
+            this.ship03.update();
       }
 }
 
