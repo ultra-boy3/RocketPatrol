@@ -56,6 +56,8 @@ class Play extends Phaser.Scene {
             keyRight = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
 
             // animation config
+            // Animations in Phaser are in a global list, and can be applied
+            // to any game object
             this.anims.create({
                   key: 'explode',
                   frames: this.anims.generateFrameNumbers('explosion',
@@ -78,15 +80,15 @@ class Play extends Phaser.Scene {
             // check collisions
             if(this.checkCollision(this.p1Rocket, this.ship03)) {
                   this.p1Rocket.reset();
-                  this.ship03.reset();
+                  this.shipExplode(this.ship03);
             }
             if(this.checkCollision(this.p1Rocket, this.ship02)) {
                   this.p1Rocket.reset();
-                  this.ship02.reset();
+                  this.shipExplode(this.ship02);
             }
             if(this.checkCollision(this.p1Rocket, this.ship01)) {
                   this.p1Rocket.reset();
-                  this.ship01.reset();
+                  this.shipExplode(this.ship01);
             }
             //Note: Spaceship 1 is the farthest from the player
       }
@@ -110,6 +112,19 @@ class Play extends Phaser.Scene {
       /*Got an idea for mod: Allow rocket to 'pierce' thru ships
       so it can hit multiple at once. Also maybe if pressing fire again,
       ship will reverse direction in mid-air*/
+
+      shipExplode(ship) {
+            // temporarily hide ship
+            ship.alpha = 0;
+            // create explosion at ship's position (sprite game object)
+            let boom = this.add.sprite(ship.x, ship.y, 'explosion').setOrigin(0, 0);
+            boom.anims.play('explode');               // play explode animation
+            boom.on('animationcomplete', () => {      //Signal-like callback + arrow shorthand way to call an anonymous function
+                  ship.reset();                       
+                  ship.alpha = 1;                     //Restore ship visibility
+                  boom.destroy();                     //Remove explosion
+            })
+      }
 }
 
 //Scenes and other scripts need to be referenced in Index.html
