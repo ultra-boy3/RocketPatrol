@@ -7,6 +7,7 @@ class Rocket extends Phaser.GameObjects.Sprite {
             scene.add.existing(this);
             this.isFiring = false;
             this.moveSpeed = 2; //Pixels per frame
+            this.moveSpeedUp = 10;
       }
 
       // Called 60 times per second
@@ -25,7 +26,7 @@ class Rocket extends Phaser.GameObjects.Sprite {
             }
             // if fired, move up
             if(this.isFiring && this.y >= borderUISize * 3 + borderPadding) {
-                  this.y -= this.moveSpeed;
+                  this.y -= this.moveSpeedUp;
             }
             // reset on miss
             if(this.y <= borderUISize * 3 + borderPadding) {
