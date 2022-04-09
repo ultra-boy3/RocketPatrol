@@ -48,6 +48,7 @@ class Play extends Phaser.Scene {
       update() {
             this.starfield.tilePositionX -= 4;
 
+            // Game objects are not updated automatically
             this.p1Rocket.update();
       }
 }
