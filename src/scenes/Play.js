@@ -31,6 +31,11 @@ class Play extends Phaser.Scene {
             this.add.rectangle(game.config.width - borderUISize, 0, borderUISize, game.config.height, 0xFFFFFF).setOrigin(0, 0);
             // Each has parameters: Position, Size, Color
             //setOrigin adjusts the object's origin/pivot
+
+            //add rocket (p1) to horizontal of screen
+            this.p1Rocket = new Rocket(this, game.config.width/2, game.config.height - borderUISize - borderPadding,
+            'rocket').setOrigin(0.5, 0);
+
             console.log("Create finished");
       }
 
