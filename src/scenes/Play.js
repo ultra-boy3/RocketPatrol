@@ -18,6 +18,10 @@ class Play extends Phaser.Scene {
       }
 
       create() {
+            // Place the tile sprite
+            this.starfield = this.add.tileSprite(0, 0, 640, 480, 'starfield').setOrigin(0, 0);
+            //Seems that by default, origin is in the sprite's center
+
             // Green UI background
             this.add.rectangle(0, borderUISize + borderPadding, game.config.width, borderUISize * 2, 0x00FF00).setOrigin(0, 0);
             // White borders
@@ -28,6 +32,10 @@ class Play extends Phaser.Scene {
             // Each has parameters: Position, Size, Color
             //setOrigin adjusts the object's origin/pivot
             console.log("Create finished");
+      }
+
+      update() {
+            this.starfield.tilePositionX -= 4;
       }
 }
 
