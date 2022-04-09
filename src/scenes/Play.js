@@ -64,7 +64,39 @@ class Play extends Phaser.Scene {
             this.ship01.update();
             this.ship02.update();
             this.ship03.update();
+
+            // check collisions
+            if(this.checkCollision(this.p1Rocket, this.ship03)) {
+                  console.log('Kaboom ship 03');
+            }
+            if(this.checkCollision(this.p1Rocket, this.ship02)) {
+                  console.log('Kaboom ship 02');
+            }
+            if(this.checkCollision(this.p1Rocket, this.ship01)) {
+                  console.log('Kaboom ship 01');
+            }
+            //Note: Spaceship 1 is the farthest from the player
       }
+
+      checkCollision(rocket, ship) {
+            // simple AABB checking
+            /* Not Phaser's true physics system. Just a simple 'check if
+            these two rectangles are overlapping' function*/
+            if (rocket.x < ship.x + ship.width &&
+                  rocket.x + rocket.width > ship.x &&
+                  rocket.y < ship.y + ship.height &&
+                  rocket.height + rocket.y > ship.y){
+                        return true;
+                  }
+            else{
+                  return false;
+            }
+            /*Reminds me of how I coded triggers to check for collisions
+            with Viola honestly*/
+      }
+      /*Got an idea for mod: Allow rocket to 'pierce' thru ships
+      so it can hit multiple at once. Also maybe if pressing fire again,
+      ship will reverse direction in mid-air*/
 }
 
 //Scenes and other scripts need to be referenced in Index.html
