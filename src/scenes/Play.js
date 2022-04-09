@@ -9,6 +9,14 @@ class Play extends Phaser.Scene {
             super("playScene");
       }
 
+      preload() {
+            //load images/tile sprites
+            this.load.image('rocket', './assets/rocket.png');
+            this.load.image('spaceship', './assets/spaceship.png');
+            this.load.image('starfield', './assets/starfield.png');
+            console.log("Preload finished");
+      }
+
       create() {
             // Green UI background
             this.add.rectangle(0, borderUISize + borderPadding, game.config.width, borderUISize * 2, 0x00FF00).setOrigin(0, 0);
@@ -19,6 +27,7 @@ class Play extends Phaser.Scene {
             this.add.rectangle(game.config.width - borderUISize, 0, borderUISize, game.config.height, 0xFFFFFF).setOrigin(0, 0);
             // Each has parameters: Position, Size, Color
             //setOrigin adjusts the object's origin/pivot
+            console.log("Create finished");
       }
 }
 
