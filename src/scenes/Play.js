@@ -90,7 +90,7 @@ class Play extends Phaser.Scene {
                   this.add.text(game.config.width/2, game.config.height/2,
                    'GAME OVER', scoreConfig).setOrigin(0.5);
                   this.add.text(game.config.width/2, game.config.height/2 + 64,
-                  'Press (R) to Restart', scoreConfig).setOrigin(0.5);
+                  'Press (R) to Restart or <- for Menu', scoreConfig).setOrigin(0.5);
                   this.gameOver = true;
             }, null, this);
             
@@ -104,6 +104,10 @@ class Play extends Phaser.Scene {
             }
             
             this.starfield.tilePositionX -= 4;
+            // Check key input for return to main menu
+            if(this.gameOver && Phaser.Input.Keyboard.JustDown(keyLeft)) {
+                  this.scene.start("menuScene");
+            }
 
             // Game objects are not updated automatically
             if(!this.gameOver){
