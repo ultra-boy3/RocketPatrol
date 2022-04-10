@@ -60,8 +60,7 @@ class Play extends Phaser.Scene {
             // to any game object
             this.anims.create({
                   key: 'explode',
-                  frames: this.anims.generateFrameNumbers('explosion',
-                   { start: 0, end: 9, first: 0}),
+                  frames: this.anims.generateFrameNumbers('explosion', { start: 0, end: 9, first: 0}),
                   frameRate: 30
             });
             
@@ -163,7 +162,7 @@ class Play extends Phaser.Scene {
                   ship.reset();                       
                   ship.alpha = 1;                     //Restore ship visibility
                   boom.destroy();                     //Remove explosion
-            })
+            });
             // score and repaint
             this.p1Score += ship.points;
             this.scoreLeft.text = this.p1Score;
